@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ../ .
 
 # Build the command inside the container.
-RUN CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -v -o main cmd/turf-api/main.go
+RUN CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -v -o main cmd/geo-api/main.go
 
 # Use a Docker multi-stage build to create a lean production image.
 FROM alpine
