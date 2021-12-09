@@ -4,6 +4,7 @@ import (
 	"errors"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/tomchavakis/turf-api/internal/app/measurement"
 )
@@ -23,6 +24,8 @@ func NewMeasurementHandler(msrSvc measurement.Service) *MeasurementHandler {
 
 func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
 
+	time.Sleep(1 * time.Second)
+
 	// Business Logic
 	d, err := sh.measurementSvc.GetDistance()
 	if err != nil {
@@ -30,5 +33,6 @@ func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Re
 		e := NewResponseError(errors.New(err.Error()), http.StatusInternalServerError)
 		return nil, e
 	}
+
 	return NewResponse(d, http.StatusOK), nil
 }
