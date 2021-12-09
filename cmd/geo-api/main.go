@@ -13,15 +13,15 @@ import (
 
 	"github.com/joho/godotenv"
 	"github.com/pkg/errors"
-	"github.com/tomchavakis/turf-api/config"
-	phhtp "github.com/tomchavakis/turf-api/internal/infra/http"
-	measurement "github.com/tomchavakis/turf-api/internal/infra/repository/geo"
+	"github.com/tomchavakis/geo-api/config"
+	phhtp "github.com/tomchavakis/geo-api/internal/infra/http"
+	measurement "github.com/tomchavakis/geo-api/internal/infra/repository/geo"
 )
 
 var build = "develop"
 
 func main() {
-	log := log.New(os.Stdout, "turf-api ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
+	log := log.New(os.Stdout, "geo-api ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
 
 	if err := run(log); err != nil {
 		log.Println("main: error:", err)

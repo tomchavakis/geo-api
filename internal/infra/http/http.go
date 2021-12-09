@@ -10,7 +10,7 @@ import (
 	"github.com/go-chi/render"
 	"github.com/pkg/errors"
 
-	"github.com/tomchavakis/turf-api/internal/app/measurement"
+	"github.com/tomchavakis/geo-api/internal/app/measurement"
 )
 
 // HTTP ...
@@ -26,7 +26,7 @@ func New(msrSvc measurement.Service) *HTTP {
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
-	r.Use(NewPrometheusMiddleware("turf-go"))
+	r.Use(NewPrometheusMiddleware("geo-go"))
 
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 	return &HTTP{

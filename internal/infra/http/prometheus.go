@@ -44,6 +44,8 @@ func NewPrometheusMiddleware(name string, buckets ...float64) func(next http.Han
 	var m Middleware
 	m.reqs = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
+			Namespace:   "worker",
+			Subsystem:   "jobs",
 			Name:        reqsName,
 			Help:        "How many HTTP requests processed, partitioned by status code, method and HTTP path.",
 			ConstLabels: prometheus.Labels{"service": name},
@@ -56,6 +58,8 @@ func NewPrometheusMiddleware(name string, buckets ...float64) func(next http.Han
 		buckets = dflBuckets
 	}
 	m.latency = prometheus.NewHistogramVec(prometheus.HistogramOpts{
+		Namespace:   "worker",
+		Subsystem:   "jobs",
 		Name:        latencyName,
 		Help:        "How long it took to process the request, partitioned by status code, method and HTTP path.",
 		ConstLabels: prometheus.Labels{"service": name},

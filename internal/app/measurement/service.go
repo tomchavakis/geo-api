@@ -1,6 +1,8 @@
 package measurement
 
+import "github.com/tomchavakis/turf-go/geojson/geometry"
+
 // Service ...
 type Service interface {
-	GetDistance() (*float64, error)
+	GetDistance(x geometry.Point, y geometry.Point) (*float64, error)
 }

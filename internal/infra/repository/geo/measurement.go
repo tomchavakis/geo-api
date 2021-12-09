@@ -2,6 +2,7 @@ package measurement
 
 import (
 	"github.com/tomchavakis/turf-go/constants"
+	"github.com/tomchavakis/turf-go/geojson/geometry"
 	m "github.com/tomchavakis/turf-go/measurement"
 )
 
@@ -15,9 +16,9 @@ func New() (*Repository, error) {
 }
 
 // GetDistance returns the distance of 2 points
-func (r *Repository) GetDistance() (*float64, error) {
+func (r *Repository) GetDistance(x geometry.Point, y geometry.Point) (*float64, error) {
 
-	d, err := m.Distance(20.0, 44.3, 21.0, 45.9, constants.UnitMeters)
+	d, err := m.PointDistance(x, y, constants.UnitMeters)
 	if err != nil {
 		return nil, err
 	}

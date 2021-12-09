@@ -1,4 +1,4 @@
-module github.com/tomchavakis/turf-api
+module github.com/tomchavakis/geo-api
 
 go 1.17
 
