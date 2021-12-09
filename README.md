@@ -15,3 +15,9 @@ update the targets from the `prometheus.yml` file according to your network setu
 docker-compose up
 ```
 navigate to http:localhost:3000 and make the appropriate queries
+
+## Start the Application
+
+```
+make run
+```
