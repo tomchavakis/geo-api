@@ -26,11 +26,11 @@ type Config struct {
 func New(ctx context.Context) *Config {
 	cfg := &Config{
 		Web: Web{
-			APIHost:            getEnv("TURF_API_HOST", "0.0.0.0:3000"),
-			APIReadTimeout:     getEnvAsTimeDuration("TURF_API_READ_TIMEOUT", "5s"),
-			APIWriteTimeout:    getEnvAsTimeDuration("TURF_API_WRITE_TIMEOUT", "5s"),
-			APIShutDownTimeout: getEnvAsTimeDuration("TURF_API_SHUTDOWN_TIMEOUT", "5s"),
-			DebugHost:          getEnv("TURF_API_DEBUG_HOST", "0.0.0.0:4000"),
+			APIHost:            getEnv("GEO_API_HOST", "0.0.0.0:3000"),
+			APIReadTimeout:     getEnvAsTimeDuration("GEO_API_READ_TIMEOUT", "5s"),
+			APIWriteTimeout:    getEnvAsTimeDuration("GEO_API_WRITE_TIMEOUT", "5s"),
+			APIShutDownTimeout: getEnvAsTimeDuration("GEO_API_SHUTDOWN_TIMEOUT", "5s"),
+			DebugHost:          getEnv("GEO_API_DEBUG_HOST", "0.0.0.0:4000"),
 			DebugMode:          getEnvAsBool("DEBUG_MODE", true),
 		},
 	}
