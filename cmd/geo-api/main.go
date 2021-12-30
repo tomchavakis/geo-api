@@ -4,8 +4,7 @@ import (
 	"context"
 	"expvar"
 	"log"
-	"net/http"
-	_ "net/http/pprof" // Register the pprof handlers
+	"net/http" // Register the pprof handlers
 	"os"
 	"os/signal"
 	"syscall"
