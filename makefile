@@ -7,6 +7,13 @@ lint:
 build:
 	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
 
+up:
+	docker-compose -f infra/docker/docker-compose.yml up --build 
+
+down:
+	docker-compose -f infra/docker/docker-compose.yml down
+
+
 docker-build:
 	docker build -f infra/docker/dockerfile -t geo-api .
 

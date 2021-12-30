@@ -1,23 +1,17 @@
-# How-to
+# Geo-Api
 
-## Start Prometheus-Grafana
+geo-api is an api for geo-applications written in Go.
 
-update the targets from the `prometheus.yml` file according to your network setup
+Geo-Api is integrated with grafana, prometheus and alertmanager. 
 
-```
-  - job_name: app
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['192.168.0.108:3001']
-```
+## Start the entire Application
 
 ```
-docker-compose up
+make up
 ```
-navigate to http:localhost:3000 and make the appropriate queries
 
-## Start the Application
+## Stop the Application
 
 ```
-make run
+make down
 ```

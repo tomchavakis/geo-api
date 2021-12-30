@@ -5,6 +5,19 @@ volumes:
   grafana_data: {}
 
 services:
+  geo-api:
+    image: geo-api
+    restart: always
+    build:
+      context: ../../
+      dockerfile: dockerfile
+    container_name: geo-api
+    env_file:
+      - ../../.env
+    ports:
+      - 4001:4001
+      - 3001:3001
+    
   prometheus:
     image: prom/prometheus
     restart: always
