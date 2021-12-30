@@ -2,7 +2,7 @@ fmt:
 	go fmt ./...
 
 lint:
-	golangci-lint run --modules-download-mode=vendor --timeout=2m0s -E golint --exclude-use-default=false --build-tags integration
+	golangci-lint run --modules-download-mode=vendor --timeout=2m0s  -E gosec -E revive --exclude-use-default=false --build-tags integration
 
 build:
 	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
