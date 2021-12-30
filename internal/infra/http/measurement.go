@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/tomchavakis/geo-api/internal/app/measurement"
 	"github.com/tomchavakis/turf-go/geojson/geometry"
@@ -51,8 +50,6 @@ func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Re
 	if err != nil {
 		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
 	}
-
-	time.Sleep(1 * time.Second)
 
 	p1 := geometry.Point{
 		Lat: latA,
