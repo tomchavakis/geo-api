@@ -25,40 +25,26 @@ func NewMeasurementHandler(msrSvc measurement.Service) *MeasurementHandler {
 
 func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
 
-	var latA, lonA, latB, lonB float64
-	var err error
+	latA, lonA, err := getLatLon(r, "latA", "lonA")
 
-	lat0 := r.URL.Query().Get("latA")
-	latA, err = strconv.ParseFloat(lat0, 64)
 	if err != nil {
-		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
-	}
-	lon0 := r.URL.Query().Get("lonA")
-	lonA, err = strconv.ParseFloat(lon0, 64)
-	if err != nil {
-		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
+		return nil, NewResponseError(err, http.StatusBadRequest)
 	}
 
-	lat1 := r.URL.Query().Get("latB")
-	latB, err = strconv.ParseFloat(lat1, 64)
-	if err != nil {
-		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
-	}
+	latB, lonB, err := getLatLon(r, "latB", "lonB")
 
-	lon1 := r.URL.Query().Get("lonB")
-	lonB, err = strconv.ParseFloat(lon1, 64)
 	if err != nil {
-		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
+		return nil, NewResponseError(err, http.StatusBadRequest)
 	}
 
 	p1 := geometry.Point{
-		Lat: latA,
-		Lng: lonA,
+		Lat: *latA,
+		Lng: *lonA,
 	}
 
 	p2 := geometry.Point{
-		Lat: latB,
-		Lng: lonB,
+		Lat: *latB,
+		Lng: *lonB,
 	}
 
 	// Business Logic
@@ -69,6 +55,54 @@ func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Re
 	}
 
 	return NewResponse(d, http.StatusOK), nil
+}
+
+func (sh *MeasurementHandler) bearingRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
+	latA, lonA, err := getLatLon(r, "latA", "lonA")
+
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	latB, lonB, err := getLatLon(r, "latB", "lonB")
+
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	p1 := geometry.Point{
+		Lat: *latA,
+		Lng: *lonA,
+	}
+
+	p2 := geometry.Point{
+		Lat: *latB,
+		Lng: *lonB,
+	}
+
+	// Business Logic
+	b, err := sh.measurementSvc.GetBearing(p1, p2)
+	if err != nil {
+		log.Printf("error %v", err)
+		return nil, NewResponseError(errors.New(err.Error()), http.StatusInternalServerError)
+	}
+
+	return NewResponse(b, http.StatusOK), nil
+}
+
+func getLatLon(r *http.Request, lat string, lon string) (*float64, *float64, error) {
+	lat0 := r.URL.Query().Get(lat)
+	latA, err := strconv.ParseFloat(lat0, 64)
+	if err != nil {
+		return nil, nil, errors.New("invalid point")
+	}
+	lon0 := r.URL.Query().Get(lon)
+	lonA, err := strconv.ParseFloat(lon0, 64)
+	if err != nil {
+		return nil, nil, errors.New("invalid point")
+	}
+
+	return &latA, &lonA, nil
 }
 
 // As Path Params:
