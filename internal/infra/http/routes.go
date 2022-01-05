@@ -19,5 +19,6 @@ func (h *HTTP) RouteBuilder() {
 	h.Router.Get("/metrics", promhttp.Handler().ServeHTTP)
 	h.Router.Route("/api/v1", func(r chi.Router) {
 		h.Router.Get("/api/v1/distance", handle(h.s.measurementRoute))
+		h.Router.Get("/api/v1/bearing", handle(h.s.bearingRoute))
 	})
 }
