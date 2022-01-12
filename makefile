@@ -15,7 +15,7 @@ down:
 
 
 docker-build:
-	docker build -f infra/docker/dockerfile -t geo-api .
+	docker build -f dockerfile -t geo-api .
 
 docker-run:
 	docker run -d -p 3000:3000 -p 4000:4000 geo-api
