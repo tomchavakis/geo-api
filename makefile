@@ -1,27 +1,39 @@
+IMAGE_NAME=geo-api
+
+help:
+	cat makefile
+
 fmt:
 	go fmt ./...
 
 lint:
 	golangci-lint run --modules-download-mode=vendor --timeout=2m0s  -E gosec -E revive --exclude-use-default=false --build-tags integration
 
+test-unit:
+	GO111MODULE=on go test -mod=vendor `go list -mod=vendor ./...` -race
+
+
+## Build
+
+
 build:
 	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
 
+docker-build:
+	DOCKER_BUILDKIT=1 docker build -f infra/docker/Dockerfile -t ${IMAGE_NAME} .
+
+
+## Run
+
+
 up:
-	docker-compose -f infra/docker/docker-compose.yml up --build 
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up
 
 down:
-	docker-compose -f infra/docker/docker-compose.yml down
-
-
-docker-build:
-	docker build -f dockerfile -t geo-api .
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml down
 
 docker-run:
-	docker run -d -p 3000:3000 -p 4000:4000 geo-api
-
-test-unit:
-	GO111MODULE=on go test -mod=vendor `go list -mod=vendor ./...` -race
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up geo-api
 
 run:
 	GO111MODULE=on go run -mod=vendor cmd/geo-api/main.go
