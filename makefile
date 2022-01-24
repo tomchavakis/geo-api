@@ -20,7 +20,7 @@ build:
 	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
 
 docker-build:
-	DOCKER_BUILDKIT=1 docker build -f infra/docker/Dockerfile -t ${IMAGE_NAME} .
+	DOCKER_BUILDKIT=1 docker build -f Dockerfile -t ${IMAGE_NAME} .
 
 
 ## Run

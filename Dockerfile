@@ -3,7 +3,7 @@ FROM golang:1.17 as builder
 # Create and change to the app directory.
 WORKDIR /app
 
-COPY ../.. .
+COPY . .
 
 # Build the command inside the container.
 RUN CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -v -o main cmd/geo-api/main.go
