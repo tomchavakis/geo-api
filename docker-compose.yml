@@ -8,21 +8,18 @@ services:
   geo-api:
     image: geo-api
     restart: always
-    build:
-      context: ../../
-      dockerfile: dockerfile
     container_name: geo-api
     env_file:
-      - ../../.env
+      - .env
     ports:
       - 4001:4001
       - 3001:3001
-    
+
   prometheus:
     image: prom/prometheus
     restart: always
     volumes:
-      - ./prometheus:/etc/prometheus/
+      - ./infra/external_services/prometheus:/etc/prometheus/
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -86,9 +83,9 @@ services:
       GF_INSTALL_PLUGINS: 'grafana-clock-panel,grafana-simple-json-datasource'
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./infra/external_services/grafana/provisioning/:/etc/grafana/provisioning/
     env_file:
-      - ./grafana/config.monitoring
+      - infra/external_services/grafana/config.monitoring
     ports:
       - 3000:3000
     depends_on:
