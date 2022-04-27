@@ -32,3 +32,13 @@ func (r *Repository) GetBearing(x geometry.Point, y geometry.Point) (*float64, e
 
 	return &b, nil
 }
+
+// GetDestination returns a point located in a specific destance and bearing from a reference point
+func (r *Repository) GetDestination(x geometry.Point, d float64, b float64, units string) (*geometry.Point, error) {
+	dest, err := m.Destination(x, d, b, units)
+	if err != nil {
+		return nil, err
+	}
+
+	return dest, nil
+}

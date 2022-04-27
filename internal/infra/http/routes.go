@@ -20,5 +20,6 @@ func (h *HTTP) RouteBuilder() {
 	h.Router.Route("/api/v1", func(r chi.Router) {
 		h.Router.Get("/api/v1/distance", handle(h.s.measurementRoute))
 		h.Router.Get("/api/v1/bearing", handle(h.s.bearingRoute))
+		h.Router.Get("/api/v1/destination", handle(h.s.destinationRoute))
 	})
 }
