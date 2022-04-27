@@ -6,4 +6,5 @@ import "github.com/tomchavakis/turf-go/geojson/geometry"
 type Service interface {
 	GetDistance(x geometry.Point, y geometry.Point) (*float64, error)
 	GetBearing(x geometry.Point, y geometry.Point) (*float64, error)
+	GetMidPoint(x geometry.Point, y geometry.Point) geometry.Point
 }

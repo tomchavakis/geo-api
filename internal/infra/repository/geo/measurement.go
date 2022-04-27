@@ -32,3 +32,9 @@ func (r *Repository) GetBearing(x geometry.Point, y geometry.Point) (*float64, e
 
 	return &b, nil
 }
+
+func (r *Repository) GetMidPoint(x geometry.Point, y geometry.Point) geometry.Point {
+	mid := m.MidPoint(x, y)
+
+	return mid
+}
