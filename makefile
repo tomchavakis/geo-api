@@ -10,7 +10,7 @@ lint:
 	golangci-lint run --modules-download-mode=vendor --timeout=2m0s  -E gosec -E revive --exclude-use-default=false --build-tags integration
 
 test-unit:
-	GO111MODULE=on go test -mod=vendor `go list -mod=vendor ./...` -race
+	go test ./...
 
 
 ## Build

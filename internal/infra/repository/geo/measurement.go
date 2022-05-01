@@ -42,3 +42,9 @@ func (r *Repository) GetDestination(x geometry.Point, d float64, b float64, unit
 
 	return dest, nil
 }
+
+func (r *Repository) GetMidPoint(x geometry.Point, y geometry.Point) geometry.Point {
+	mid := m.MidPoint(x, y)
+
+	return mid
+}

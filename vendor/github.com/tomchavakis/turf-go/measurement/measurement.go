@@ -9,7 +9,9 @@ import (
 	"github.com/tomchavakis/turf-go/geojson"
 	"github.com/tomchavakis/turf-go/geojson/feature"
 	"github.com/tomchavakis/turf-go/geojson/geometry"
-	"github.com/tomchavakis/turf-go/meta/coordAll"
+	"github.com/tomchavakis/turf-go/internal/common"
+	"github.com/tomchavakis/turf-go/invariant"
+	meta "github.com/tomchavakis/turf-go/meta/coordAll"
 )
 
 // Distance calculates the distance between two points in kilometers. This uses the Haversine formula
@@ -97,15 +99,15 @@ func Length(t interface{}, units string) (float64, error) {
 	var l float64
 	switch gtp := t.(type) {
 	case []geometry.Point:
-		l, err = lenth(gtp, units)
+		l, err = length(gtp, units)
 		result = l
 	case geometry.LineString:
-		l, err = lenth(gtp.Coordinates, units)
+		l, err = length(gtp.Coordinates, units)
 		result = l
 	case geometry.MultiLineString:
 		coords := gtp.Coordinates // []LineString
 		for _, c := range coords {
-			l, err = lenth(c.Coordinates, units)
+			l, err = length(c.Coordinates, units)
 			if err != nil {
 				break
 			}
@@ -113,7 +115,7 @@ func Length(t interface{}, units string) (float64, error) {
 		}
 	case geometry.Polygon:
 		for _, c := range gtp.Coordinates {
-			l, err = lenth(c.Coordinates, units)
+			l, err = length(c.Coordinates, units)
 			if err != nil {
 				break
 			}
@@ -123,7 +125,7 @@ func Length(t interface{}, units string) (float64, error) {
 		coords := gtp.Coordinates
 		for _, coord := range coords {
 			for _, pl := range coord.Coordinates {
-				l, err = lenth(pl.Coordinates, units)
+				l, err = length(pl.Coordinates, units)
 				if err != nil {
 					break
 				}
@@ -135,7 +137,7 @@ func Length(t interface{}, units string) (float64, error) {
 }
 
 // http://turfjs.org/docs/#linedistance
-func lenth(coords []geometry.Point, units string) (float64, error) {
+func length(coords []geometry.Point, units string) (float64, error) {
 	travelled := 0.0
 	prevCoords := coords[0]
 	var currentCoords geometry.Point
@@ -542,4 +544,203 @@ func CentroidFeatureCollection(fc feature.Collection, properties map[string]inte
 		return nil, err
 	}
 	return f, nil
+}
+
+// RhumbBearing takes two points and finds the bearing angle between them along a Rhumb line
+// final option calculates the final bearing if true
+// returns a bearing from north in decimal degrees, between -180 and 180 degrees (positive clockwise)
+// i.e the angle measured in degrees start the north line (0 degrees)
+// https://en.wikipedia.org/wiki/Rhumb_line
+// In navigation, a rhumb line or loxodrome is an arc crossing all meridians of longitude at the same angle, that is, a path with constant
+// bearing as measured relative to true north.
+func RhumbBearing(start geometry.Point, end geometry.Point, final bool) (*float64, error) {
+	var bear360 float64
+	e, err := invariant.GetCoord(&end)
+	if err != nil {
+		return nil, err
+	}
+	s, err := invariant.GetCoord(&start)
+	if err != nil {
+		return nil, err
+	}
+
+	if final {
+		bear360 = calculateRhumbBearing(e, s)
+	} else {
+		bear360 = calculateRhumbBearing(s, e)
+	}
+	var bear180 float64
+	if bear360 > 180.0 {
+		bear180 = -(360.0 - bear360)
+	} else {
+		bear180 = bear360
+	}
+	return &bear180, nil
+}
+
+// returns the bearing from 'this' point to destination point along a rhumb line.
+// adapted from geodesy https://github.com/chrisveness/geodesy/blob/master/latlon-spherical.js
+func calculateRhumbBearing(from []float64, to []float64) float64 {
+	φ := conversions.DegreesToRadians(from[1])
+	φ2 := conversions.DegreesToRadians(to[1])
+	Δλ := conversions.DegreesToRadians(to[0] - from[0])
+	// if Δλ is over 180° take shorter rhumb line across the anti-meridian:
+	if Δλ > math.Pi {
+		Δλ -= 2 * math.Pi
+	}
+	if Δλ < -math.Pi {
+		Δλ += 2 * math.Pi
+	}
+
+	Δψ := math.Log(math.Tan(φ2/2+math.Pi/4) / math.Tan(φ/2+math.Pi/4))
+	θ := math.Atan2(Δλ, Δψ)
+	tmp := conversions.RadiansToDegrees(θ) + 360.0
+	return math.Mod(tmp, 360)
+}
+
+// RhumbDestination returns the destination having travelled the given distance along a Rhumb line from the origin Point with the (varant) given bearing.
+// If you maintain a constant bearing along a rhumb line, you will gradually spiral towards one of the poles. ref. http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
+func RhumbDestination(origin geometry.Point, distance float64, bearing float64, units string, properties map[string]interface{}) (*feature.Feature, error) {
+	wasNegativeDistance := distance < 0
+	distanceInMeters, err := conversions.ConvertLength(math.Abs(distance), units, constants.UnitMeters)
+	if err != nil {
+		return nil, err
+	}
+
+	if wasNegativeDistance {
+		distanceInMeters = -math.Abs(distanceInMeters)
+	}
+	coords, err := invariant.GetCoord(&origin)
+	if err != nil {
+		return nil, err
+	}
+
+	destination := calculateRhumbDestination(coords, distanceInMeters, bearing, nil)
+
+	// compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
+	// solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
+
+	if destination[0]-coords[0] > 180.0 {
+		destination[0] += -360.0
+	} else {
+		if coords[0]-destination[0] > 180.0 {
+			destination[0] += 360
+		} else {
+			destination[0] += 0
+		}
+	}
+
+	result := feature.Feature{
+		Type:       "Feature",
+		Properties: properties,
+		Bbox:       []float64{},
+		Geometry: geometry.Geometry{
+			GeoJSONType: "Point",
+			Coordinates: destination,
+		},
+	}
+
+	return &result, nil
+}
+
+// Adapted from Geodesy: http://www.movable-type.co.uk/scripts/latlong.html#rhumblines
+func calculateRhumbDestination(origin []float64, distance float64, bearing float64, radius *float64) []float64 {
+	if radius == nil {
+		radius = common.Float64Ptr(constants.EarthRadius)
+	}
+
+	// angular distance in radians
+	δ := distance / *radius
+	// to radians, but without normalize to π
+	λ1 := (origin[0] * math.Pi) / 180.0
+	φ1 := conversions.DegreesToRadians(origin[1])
+	θ := conversions.DegreesToRadians(bearing)
+
+	Δφ := δ * math.Cos(θ)
+	φ2 := φ1 + Δφ
+
+	if math.Abs(φ2) > (math.Pi / 2) {
+		if φ2 > 0 {
+			φ2 = math.Pi - φ2
+		} else {
+			φ2 = -math.Pi - φ2
+		}
+	}
+
+	Δψ := math.Log(math.Tan((φ2/2)+(math.Pi/4)) / math.Tan((φ1/2)+(math.Pi/4)))
+	q := 0.0
+	if math.Abs(Δψ) > (10e-12) {
+		q = Δφ / Δψ
+	} else {
+		q = math.Cos(φ1)
+	}
+
+	Δλ := (δ * math.Sin(θ)) / q
+	λ2 := λ1 + Δλ
+
+	// normalise to -180...+180
+	return []float64{(math.Mod(((λ2*180.0)/math.Pi+540), 360) - 180.0), (φ2 * 180.0) / math.Pi}
+}
+
+// RhumbDistance calculates the distance along a rhumb line between two points.
+func RhumbDistance(from geometry.Point, to geometry.Point, units string) (*float64, error) {
+	origin, err := invariant.GetCoord(&from)
+	if err != nil {
+		return nil, err
+	}
+	destination, err := invariant.GetCoord(&to)
+	if err != nil {
+		return nil, err
+	}
+	// compensate the crossing of the 180th meridian (https://macwright.org/2016/09/26/the-180th-meridian.html)
+	// solution from https://github.com/mapbox/mapbox-gl-js/issues/3250#issuecomment-294887678
+
+	if destination[0]-origin[0] > 180.0 {
+		destination[0] += -360.0
+	} else {
+		if origin[0]-destination[0] > 180.0 {
+			destination[0] += 360
+		} else {
+			destination[0] += 0
+		}
+	}
+	distanceInMeters := calculateRhumbDistance(origin, destination, nil)
+	distance, err := conversions.ConvertLength(distanceInMeters, constants.UnitMeters, units)
+	if err != nil {
+		return nil, err
+	}
+	return &distance, nil
+}
+
+// returns the distance travelling from 'this' point to destination point along a rhumb line.
+// adapted from Geodesy: https://github.com/chrisveness/geodesy/blob/master/latlon-spherical.js
+func calculateRhumbDistance(origin []float64, destination []float64, radius *float64) float64 {
+	if radius == nil {
+		radius = common.Float64Ptr(constants.EarthRadius)
+	}
+
+	φ1 := (origin[1] * math.Pi) / 180.0
+	φ2 := (destination[1] * math.Pi) / 180.0
+	Δφ := φ2 - φ1
+	Δλ := (math.Abs(destination[0]-origin[0]) * math.Pi) / 180.0
+	// if dLon over 180° take shorter rhumb line across the anti-meridian:
+	if Δλ > math.Pi {
+		Δλ -= 2 * math.Pi
+	}
+
+	// on Mercator projection, longitude distances shrink by latitude; q is the 'stretch factor'
+	// q becomes ill-conditioned along E-W line (0/0); use empirical tolerance to avoid it
+	Δψ := math.Log(math.Tan(φ2/2+math.Pi/4) / math.Tan(φ1/2+math.Pi/4))
+
+	q := 0.0
+	if math.Abs(Δψ) > 10e-12 {
+		q = Δφ / Δψ
+	} else {
+		q = math.Cos(φ1)
+	}
+	// distance is pythagoras on 'stretched' Mercator projection
+	Δ := math.Sqrt(Δφ*Δφ + q*q*Δλ*Δλ) // angular distance in radians
+	dist := Δ * *radius
+
+	return dist
 }
