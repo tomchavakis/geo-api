@@ -90,6 +90,34 @@ func (sh *MeasurementHandler) bearingRoute(w http.ResponseWriter, r *http.Reques
 	return NewResponse(b, http.StatusOK), nil
 }
 
+func (sh *MeasurementHandler) midpointRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
+	latA, lonA, err := getLatLon(r, "latA", "lonA")
+
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	latB, lonB, err := getLatLon(r, "latB", "lonB")
+
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	p1 := geometry.Point{
+		Lat: *latA,
+		Lng: *lonA,
+	}
+
+	p2 := geometry.Point{
+		Lat: *latB,
+		Lng: *lonB,
+	}
+
+	midpoint := sh.measurementSvc.GetMidPoint(p1, p2)
+
+	return NewResponse(midpoint, http.StatusOK), nil
+}
+
 func getLatLon(r *http.Request, lat string, lon string) (*float64, *float64, error) {
 	lat0 := r.URL.Query().Get(lat)
 	latA, err := strconv.ParseFloat(lat0, 64)
