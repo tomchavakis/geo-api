@@ -133,6 +133,48 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Destination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3001/api/v1/bearing?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"bearing"
+							],
+							"query": [
+								{
+									"key": "latA",
+									"value": "23.33"
+								},
+								{
+									"key": "lonA",
+									"value": "34.44"
+								},
+								{
+									"key": "latB",
+									"value": "23.44"
+								},
+								{
+									"key": "lonB",
+									"value": "34.42"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

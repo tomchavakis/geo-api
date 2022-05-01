@@ -133,6 +133,49 @@ func getLatLon(r *http.Request, lat string, lon string) (*float64, *float64, err
 	return &latA, &lonA, nil
 }
 
+func (sh *MeasurementHandler) destinationRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
+	lat, lon, err := getLatLon(r, "lat", "lon")
+
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	p := geometry.Point{
+		Lat: *lat,
+		Lng: *lon,
+	}
+
+	d := r.URL.Query().Get("distance")
+	if d == "" {
+		return nil, NewResponseError(errors.New("distance can't be empty"), http.StatusBadRequest)
+	}
+	distance, err := strconv.ParseFloat(d, 64)
+
+	if err != nil {
+		return nil, NewResponseError(errors.New("invalid distance"), http.StatusBadRequest)
+	}
+
+	b := r.URL.Query().Get("bearing")
+	if b == "" {
+		return nil, NewResponseError(errors.New("bearing can't be empty"), http.StatusBadRequest)
+	}
+	bearing, err := strconv.ParseFloat(b, 64)
+
+	if err != nil {
+		return nil, NewResponseError(errors.New("invalid bearing"), http.StatusBadRequest)
+	}
+
+	units := r.URL.Query().Get("units")
+
+	dp, err := sh.measurementSvc.GetDestination(p, distance, bearing, units)
+	if err != nil {
+		log.Printf("error %v", err)
+		return nil, NewResponseError(errors.New(err.Error()), http.StatusInternalServerError)
+	}
+
+	return NewResponse(dp, http.StatusOK), nil
+}
+
 // As Path Params:
 // if l0 := chi.URLParam(r, "latA"); l0 != "" {
 // 	latA, err = strconv.ParseFloat(l0, 64)
