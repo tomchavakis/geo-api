@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geo-api
+  labels:
+    app.kubernetes.io/component: web
+  annotations: {}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: geo-api
+      app.kubernetes.io/component: web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: web
+      annotations: {}
+    spec:
+      containers:
+        - name: geo-api-web
+          image: "{{ .Values.imageRepository }}:{{ .Values.version }}"
+          imagePullPolicy: "IfNotPresent"
+          resources:
+            requests:
+              cpu: {{ .Values.web.requestsCpu }}
+              memory: {{ .Values.web.requestsMemory }}
+            limits:
+              cpu: {{ .Values.web.limitsCpu }}
+              memory: {{ .Values.web.limitsMemory }}
+          command: {}
+          args: {}
+          ports:
+           - name: web-http
+             containerPort: {{ .Values.web.containerPort }}
+             protocol: TCP
+
+#   more to follow
+# todo Need to add:
+# todo the values file

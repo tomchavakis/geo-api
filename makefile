@@ -27,10 +27,10 @@ docker-build:
 
 
 up:
-	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml -f docker-compose.external.yml up
 
 down:
-	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml down
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml -f docker-compose.external.yml down
 
 docker-run:
 	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up geo-api
