@@ -1,0 +1,408 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
+# Built for Windows32
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon May 30 21:10:26 2022
+
+# Variables
+
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+# environment
+POSH_THEME = C:\Projects\ohmyposh\ohmyposh.json
+# environment
+USERPROFILE = C:\Users\tomch
+# environment
+VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+# environment
+TMPDIR = C:\Users\tomch\AppData\Local\Temp
+# environment
+LOCALAPPDATA = C:\Users\tomch\AppData\Local
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-d6599355-c5a7-46f8-8c0d-8a24676bde3d-sock
+# environment
+WSLENV = WT_SESSION::WT_PROFILE_ID
+# environment
+VSCODE_CWD = C:\Projects\geo-api
+# environment
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# environment
+SYSTEMROOT = C:\Windows
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
+# environment
+GOPATH = C:\Users\tomch\go
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# makefile (from 'makefile', line 1)
+IMAGE_NAME = geo-api
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_23184_DFWHOIWKPTSUTEGU
+# environment
+ORIGINAL_TEMP = C:/Users/tomch/AppData/Local/Temp
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = C:/Projects/geo-api
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+HOSTNAME = tom
+# environment
+OLDPWD = C:/Projects
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+CONDA_PROMPT_MODIFIER = false
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\tomch\AppData\Roaming\Code\CachedData\c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = C:\Users\tomch\AppData\Local\Temp
+# default
+.INCLUDE_DIRS = .
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# makefile
+MAKEFLAGS = pqrR
+# environment
+PKG_CONFIG_PATH = C:\Program Files\Git\usr\lib\pkgconfig;C:\Program Files\Git\usr\share\pkgconfig;C:\Program Files\Git\lib\pkgconfig
+# environment
+ONEDRIVE = C:\Users\tomch\OneDrive
+# makefile
+CURDIR := c:/Projects/geo-api
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+MSYSTEM_CARCH = x86_64
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+POWERLINE_COMMAND = oh-my-posh
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = C:/Users/tomch/AppData/Local/Temp/ssh-JbQ6ZbXm769X/agent.659
+# default
+.SHELLFLAGS := -c
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST := makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 23184
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# environment
+__PSLOCKDOWNPOLICY = 0
+# environment
+POSH_THEMES_PATH = C:\Users\tomch\AppData\Local\Programs\oh-my-posh\themes
+# environment
+WT_PROFILE_ID = {00000000-0000-0000-ba54-000000000002}
+# automatic
+*F = $(notdir $*)
+# environment
+MANPATH = C:\Program Files\Git\usr\local\man;C:\Program Files\Git\usr\share\man;C:\Program Files\Git\usr\man;C:\Program Files\Git\share\man
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+ONEDRIVECONSUMER = C:\Users\tomch\OneDrive
+# default
+MAKE_HOST := Windows32
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+INFOPATH = C:\Program Files\Git\usr\local\info;C:\Program Files\Git\usr\share\info;C:\Program Files\Git\usr\info;C:\Program Files\Git\share\info
+# makefile
+SHELL = C:/Program Files/Git/usr/bin/sh.exe
+# environment
+ORIGINAL_PATH = C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\dotnet;C:\Program Files\Cryptowatch Desktop;C:\Program Files\Kubernetes\Minikube;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\GitHub CLI;C:\Program Files\Go\bin;C:\Users\tomch\AppData\Local\Microsoft\WindowsApps;C:\Users\tomch\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\tomch\go\bin;C:\Users\tomch\.dotnet\tools;C:\Users\tomch\AppData\Local\Programs\oh-my-posh\bin;C:\Users\tomch\AppData\Local\Programs\oh-my-posh\themes;C:\Users\tomch\AppData\Local\atom\bin;C:\Users\tomch\.dotnet\tools;C:\Users\tomch\go\bin
+# environment
+HOMEPATH = \Users\tomch
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 2
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\Windows\system32\cmd.exe
+# environment
+WINDIR = C:\Windows
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = C:\Program Files\Go\bin;C:\Users\tomch\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\opt\bin;C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\dotnet;C:\Program Files\Cryptowatch Desktop;C:\Program Files\Kubernetes\Minikube;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\GitHub CLI;C:\Users\tomch\AppData\Local\Microsoft\WindowsApps;C:\Users\tomch\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\tomch\go\bin;C:\Users\tomch\.dotnet\tools;C:\Users\tomch\AppData\Local\Programs\oh-my-posh\bin;C:\Users\tomch\AppData\Local\Programs\oh-my-posh\themes;C:\Users\tomch\AppData\Local\atom\bin;C:\Users\tomch\.dotnet\tools;C:\Users\tomch\go\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+# environment
+ZES_ENABLE_SYSMAN = 1
+# environment
+COMPUTERNAME = TOM
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = $P$G
+# environment
+CHOCOLATEYLASTPATHUPDATE = 132816310676520973
+# environment
+GOROOT = C:\Program Files\Go
+# environment
+WT_SESSION = 34370d9a-1eba-4b08-9af7-4841b5b24a36
+# environment
+LOGONSERVER = \\TOM
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = tomch
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# automatic
+?F = $(notdir $?)
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+MSYSTEM_CHOST = x86_64-pc-msys
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# automatic
++F = $(notdir $+)
+# environment
+CONFIG_SITE = C:/Program Files/Git/etc/config.site
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = TOM
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+OS = Windows_NT
+# environment
+MSYSTEM_PREFIX = C:/Program Files/Git/usr
+# makefile
+.DEFAULT_GOAL := help
+# default
+MAKE_VERSION := 4.3
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = TOM
+# environment
+NUMBER_OF_PROCESSORS = 12
+# environment
+PUBLIC = C:\Users\Public
+# environment
+SSH_AGENT_PID = 660
+# environment
+_ = C:/Users/tomch/AppData/Local/Programs/Microsoft VS Code/Code.exe
+# environment
+APPDATA = C:\Users\tomch\AppData\Roaming
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+GOMODCACHE = C:\Users\tomch\go\pkg\mod
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+MSYSTEM = MSYS
+# environment
+HOME = C:\Users\tomch
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = C:\Users\tomch\AppData\Local\Temp
+# environment
+TERM = xterm-256color
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\419a34b93c4a3a5b54c450a394881126-1.67.2-main-sock
+# environment
+GOPROXY = https://proxy.golang.org,direct
+# default
+.RECIPEPREFIX := 
+# environment
+ORIGINAL_TMP = C:/Users/tomch/AppData/Local/Temp
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+# environment
+PROCESSOR_REVISION = 9e0a
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+# variable set hash-table stats:
+# Load=134/1024=13%, Rehash=0, Collisions=17/161=11%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (key c:/Projects/geo-api, mtime 1652608101): 21 files, no impossibilities.
+
+# 21 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+lint:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 10):
+	golangci-lint run --modules-download-mode=vendor --timeout=2m0s  -E gosec -E revive --exclude-use-default=false --build-tags integration
+
+up:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 30):
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up
+
+test-unit:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 13):
+	go test ./...
+
+fmt:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 7):
+	go fmt ./...
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+run:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 39):
+	GO111MODULE=on go run -mod=vendor cmd/geo-api/main.go
+
+help:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 4):
+	cat makefile
+
+build:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 20):
+	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-05-15 11:20:53
+#  File has been updated.
+#  Successfully updated.
+
+docker-build:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 23):
+	DOCKER_BUILDKIT=1 docker build -f Dockerfile -t ${IMAGE_NAME} .
+
+docker-run:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 36):
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up geo-api
+
+down:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'makefile', line 33):
+	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml down
+
+# files hash-table stats:
+# Load=14/1024=1%, Rehash=0, Collisions=0/24=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 34 / storage = 249 B / avg = 7 B
+# current buf: size = 8174 B / used = 249 B / count = 34 / avg = 7 B
+
+# strcache performance: lookups = 48 / hit rate = 29%
+# hash-table stats:
+# Load=34/8192=0%, Rehash=0, Collisions=0/48=0%
+# Finished Make data base on Mon May 30 21:10:26 2022
+
+ 
