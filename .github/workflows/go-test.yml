@@ -10,16 +10,16 @@ jobs:
         shell: pwsh
     steps:
       - name: Checkout code 👋
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Go 🗳
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
       - name: Run GoReleaser 🚀
-        uses: goreleaser/goreleaser-action@v2
+        uses: goreleaser/goreleaser-action@v3
         with:
           distribution: goreleaser
           version: latest
           args: build --rm-dist --snapshot --skip-post-hooks
-          dir: .
-          main: ./cmd/geo-api
+          workdir: .
+          main: ../../cmd/geo-api
       - name: Run Tests
         run: go test -v ./...
