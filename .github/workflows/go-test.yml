@@ -19,7 +19,7 @@ jobs:
           distribution: goreleaser
           version: latest
           args: build --rm-dist --snapshot --skip-post-hooks
-          workdir: .
+          dir: .
           main: ./cmd/geo-api
       - name: Run Tests
         run: go test -v ./...
