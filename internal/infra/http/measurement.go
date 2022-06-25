@@ -1,6 +1,7 @@
 package http
 
 import (
+	"encoding/json"
 	"errors"
 	"log"
 	"net/http"
@@ -115,6 +116,43 @@ func (sh *MeasurementHandler) midpointRoute(w http.ResponseWriter, r *http.Reque
 	midpoint := sh.measurementSvc.GetMidPoint(p1, p2)
 
 	return NewResponse(midpoint, http.StatusOK), nil
+}
+
+// NearestPointMessage ...
+type NearestPointMessage struct {
+	ReferencePoint *geometry.Point  `json:"ref,omitempty"`
+	Points         []geometry.Point `json:"points"`
+	Units          string           `json:"units"`
+}
+
+func (sh *MeasurementHandler) nearestPointRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
+	if r.Body == nil {
+		err := errors.New("invalid Body")
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+	var np NearestPointMessage
+	err := json.NewDecoder(r.Body).Decode(&np)
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	if np.ReferencePoint == nil {
+		err := errors.New("reference point can't be empty")
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	if len(np.Points) == 0 {
+		err := errors.New("points can't be empty")
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	nearestPoint, err := sh.measurementSvc.GetNearestPoint(*np.ReferencePoint, np.Points, np.Units)
+
+	if err != nil {
+		return nil, NewResponseError(err, http.StatusBadRequest)
+	}
+
+	return NewResponse(nearestPoint, http.StatusOK), nil
 }
 
 func getLatLon(r *http.Request, lat, lon string) (*float64, *float64, error) {
