@@ -194,8 +194,10 @@ github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
-github.com/tomchavakis/turf-go v0.0.3 h1:BSKbIe0mlasZMYb27719GiwgGFSBTT+XkF+Pm661ohA=
-github.com/tomchavakis/turf-go v0.0.3/go.mod h1:BeSO3k15mLLYjzX3nlv3aR+TaUiEJfws+P2Ewvd5iF8=
+github.com/tomchavakis/geojson v0.0.3 h1:JRCom5X9ZVG9Zw0jNb7ytpcd15UCMKW9xrZdeHgBg7I=
+github.com/tomchavakis/geojson v0.0.3/go.mod h1:KYAKpqPQmGXQx4V8H9VMpr/GN8D6LdJxljkCXhyKiRI=
+github.com/tomchavakis/turf-go v0.0.4 h1:z5jE/cImYlHk+ucIJRMgUP+uCzE/pS86ytGlB5BhF0w=
+github.com/tomchavakis/turf-go v0.0.4/go.mod h1:/bo+hiv2LQRBzUVkG0tVE55q73gZzq958CCW1GJxQqo=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

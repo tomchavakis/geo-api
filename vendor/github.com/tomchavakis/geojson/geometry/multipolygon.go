@@ -9,6 +9,5 @@ type MultiPolygon struct {
 
 // NewMultiPolygon initialize a new MultiPolygon
 func NewMultiPolygon(coordinates []Polygon) (*MultiPolygon, error) {
-
 	return &MultiPolygon{Coordinates: coordinates}, nil
 }

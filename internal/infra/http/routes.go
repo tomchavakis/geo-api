@@ -9,7 +9,6 @@ import (
 
 // RouteBuilder builds the routes
 func (h *HTTP) RouteBuilder() {
-
 	h.Router.Get("/health", func(w http.ResponseWriter, r *http.Request) {
 		status := http.StatusOK
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")

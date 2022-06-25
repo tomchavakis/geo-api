@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/tomchavakis/turf-go/geojson"
+	"github.com/tomchavakis/geojson"
 )
 
 // Geometry type
@@ -18,7 +18,6 @@ type Geometry struct {
 
 // FromJSON returns a new Geometry by passing in a valid JSON string.
 func FromJSON(gjson string) (*Geometry, error) {
-
 	if gjson == "" {
 		return nil, errors.New("input cannot be empty")
 	}
@@ -30,13 +29,11 @@ func FromJSON(gjson string) (*Geometry, error) {
 	}
 
 	return &geometry, nil
-
 }
 
 // ToPoint converts the Geometry to Point
 func (g *Geometry) ToPoint() (*Point, error) {
 	if g.GeoJSONType == geojson.Point {
-
 		var coords []float64
 		ccc, err := json.Marshal(g.Coordinates)
 		if err != nil {
@@ -80,9 +77,7 @@ func (g *Geometry) ToMultiPoint() (*MultiPoint, error) {
 
 // ToPolygon convert the Geometry to Polygon
 func (g *Geometry) ToPolygon() (*Polygon, error) {
-
 	if g.GeoJSONType == geojson.Polygon {
-
 		var coords = []LineString{}
 
 		var polygonCoordinates [][][]float64

@@ -7,7 +7,7 @@ fmt:
 	go fmt ./...
 
 lint:
-	golangci-lint run --modules-download-mode=vendor --timeout=2m0s  -E gosec -E revive --exclude-use-default=false --build-tags integration
+	golangci-lint run --timeout=2m0s
 
 test-unit:
 	go test ./...

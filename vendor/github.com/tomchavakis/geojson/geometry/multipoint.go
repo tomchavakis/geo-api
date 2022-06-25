@@ -10,7 +10,6 @@ type MultiPoint struct {
 
 // NewMultiPoint initializes a new MultiLineString
 func NewMultiPoint(coordinates []Point) (*MultiPoint, error) {
-
 	if len(coordinates) < 2 {
 		return nil, errors.New("a MultiPoint must have at least two or more positions")
 	}

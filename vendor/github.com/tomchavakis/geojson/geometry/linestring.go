@@ -11,7 +11,6 @@ type LineString struct {
 
 // NewLineString initializes a new LineString
 func NewLineString(coordinates []Point) (*LineString, error) {
-
 	if len(coordinates) < 2 {
 		return nil, errors.New("according to the GeoJSON v1.0 spec a LineString must have at least two or more positions")
 	}

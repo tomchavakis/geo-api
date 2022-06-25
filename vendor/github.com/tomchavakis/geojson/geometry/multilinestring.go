@@ -10,7 +10,6 @@ type MultiLineString struct {
 
 // NewMultiLineString initializes a new MultiLineString
 func NewMultiLineString(coordinates []LineString) (*MultiLineString, error) {
-
 	if len(coordinates) < 2 {
 		return nil, errors.New("a MultiLineString must have at least two or more linestrings")
 	}

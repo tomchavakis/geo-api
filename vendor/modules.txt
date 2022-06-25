@@ -4,8 +4,6 @@ github.com/beorn7/perks/quantile
 # github.com/cespare/xxhash/v2 v2.1.2
 ## explicit; go 1.11
 github.com/cespare/xxhash/v2
-# github.com/go-chi/chi v1.5.4
-## explicit; go 1.16
 # github.com/go-chi/chi/v5 v5.0.7
 ## explicit; go 1.14
 github.com/go-chi/chi/v5
@@ -44,13 +42,15 @@ github.com/prometheus/common/model
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
 github.com/prometheus/procfs/internal/util
-# github.com/tomchavakis/turf-go v0.0.3
+# github.com/tomchavakis/geojson v0.0.3
+## explicit; go 1.17
+github.com/tomchavakis/geojson
+github.com/tomchavakis/geojson/feature
+github.com/tomchavakis/geojson/geometry
+# github.com/tomchavakis/turf-go v0.0.4
 ## explicit; go 1.14
 github.com/tomchavakis/turf-go/constants
 github.com/tomchavakis/turf-go/conversions
-github.com/tomchavakis/turf-go/geojson
-github.com/tomchavakis/turf-go/geojson/feature
-github.com/tomchavakis/turf-go/geojson/geometry
 github.com/tomchavakis/turf-go/internal/common
 github.com/tomchavakis/turf-go/invariant
 github.com/tomchavakis/turf-go/measurement

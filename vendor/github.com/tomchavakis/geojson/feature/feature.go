@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/tomchavakis/turf-go/geojson"
-	"github.com/tomchavakis/turf-go/geojson/geometry"
+	"github.com/tomchavakis/geojson"
+	"github.com/tomchavakis/geojson/geometry"
 )
 
 // Feature defines a new feature type
@@ -31,10 +31,10 @@ type Feature struct {
 }
 
 // New initializes a new Feature
-func New(geometry geometry.Geometry, bbox []float64, properties map[string]interface{}, id string) (*Feature, error) {
+func New(geom geometry.Geometry, bbox []float64, properties map[string]interface{}, id string) (*Feature, error) {
 	return &Feature{
 		ID:         id,
-		Geometry:   geometry,
+		Geometry:   geom,
 		Properties: properties,
 		Type:       geojson.Feature,
 		Bbox:       bbox,
@@ -43,7 +43,6 @@ func New(geometry geometry.Geometry, bbox []float64, properties map[string]inter
 
 // FromJSON returns a new Feature by passing in a valid JSON string.
 func FromJSON(gjson string) (*Feature, error) {
-
 	if gjson == "" {
 		return nil, errors.New("input cannot be empty")
 	}
@@ -55,7 +54,6 @@ func FromJSON(gjson string) (*Feature, error) {
 	}
 
 	return &feature, nil
-
 }
 
 // ToPoint converts the Feature to Point.
@@ -139,7 +137,6 @@ func (f *Feature) ToPolygon() (*geometry.Polygon, error) {
 		return nil, fmt.Errorf("cannot create a new polygon %v", err.Error())
 	}
 	return poly, nil
-
 }
 
 // ToMultiPolygon converts a MultiPolygon Feature to MultiPolygon geometry.

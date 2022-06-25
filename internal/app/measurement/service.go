@@ -1,6 +1,6 @@
 package measurement
 
-import "github.com/tomchavakis/turf-go/geojson/geometry"
+import "github.com/tomchavakis/geojson/geometry"
 
 // Service ...
 type Service interface {
