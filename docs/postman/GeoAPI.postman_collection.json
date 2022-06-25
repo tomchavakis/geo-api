@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0d3ae3dc-2d99-408f-9102-c8aa442949ce",
+		"_postman_id": "a7d96d0a-ac72-468e-aeee-2fed465ee1fd",
 		"name": "GeoAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "96940"
 	},
 	"item": [
 		{
@@ -175,6 +176,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Nearest Point",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ref\": {\r\n        \"lat\": 39.50,\r\n        \"lng\": -75.33\r\n    },\r\n    \"points\": [\r\n        {\r\n            \"lat\": 39.44,\r\n            \"lng\": -75.33\r\n        },\r\n        {\r\n            \"lat\": 39.45,\r\n            \"lng\": -75.33\r\n        },\r\n        {\r\n            \"lat\": 39.46,\r\n            \"lng\": -75.31\r\n        },\r\n        {\r\n            \"lat\": 39.46,\r\n            \"lng\": -75.30\r\n        }\r\n    ],\r\n    \"units\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3001/api/v1/nearestpoint",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"v1",
+								"nearestpoint"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -185,7 +219,10 @@
 					"name": "Debug - pprof",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
