@@ -17,7 +17,7 @@ test-unit:
 
 
 build:
-	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -mod=vendor -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
+	CGO_ENABLED=0 GO111MODULE=on GOOS=linux go build -a -installsuffix cgo -o ./bin/geo-api ./cmd/geo-api/main.go
 
 docker-build:
 	DOCKER_BUILDKIT=1 docker build -f Dockerfile -t ${IMAGE_NAME} .
@@ -36,4 +36,4 @@ docker-run:
 	COMPOSE_PROJECT_NAME=geoapi docker-compose -f docker-compose.yml up geo-api
 
 run:
-	GO111MODULE=on go run -mod=vendor cmd/geo-api/main.go
+	GO111MODULE=on go run cmd/geo-api/main.go
