@@ -38,7 +38,7 @@ func New(ctx context.Context) *Config {
 	return cfg
 }
 
-func getEnv(key string, defaultVal string) string {
+func getEnv(key, defaultVal string) string {
 	if value, ok := os.LookupEnv(key); ok {
 		return value
 	}
@@ -54,7 +54,7 @@ func getEnvAsBool(name string, defaultVal bool) bool {
 	return defaultVal
 }
 
-func getEnvAsTimeDuration(name string, defaultVal string) time.Duration {
+func getEnvAsTimeDuration(name, defaultVal string) time.Duration {
 	def, _ := time.ParseDuration(defaultVal)
 	if value, ok := os.LookupEnv(name); ok {
 		d, err := time.ParseDuration(value)

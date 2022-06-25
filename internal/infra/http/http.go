@@ -51,14 +51,13 @@ func handle(fn func(w http.ResponseWriter, r *http.Request) (*Response, error)) 
 	}
 }
 
-// RespondError sends an error reponse back to the client.
+// RespondError sends an error response back to the client.
 func RespondError(w http.ResponseWriter, code int, err error) (int, error) {
 	if webErr, ok := errors.Cause(err).(*Error); ok {
 		er := ErrorResponse{
 			Error: webErr.Err.Error(),
 		}
 		return Respond(w, webErr.Status, er)
-
 	}
 	// If not, the handler sent any arbitrary error value so use 500.
 	er := ErrorResponse{

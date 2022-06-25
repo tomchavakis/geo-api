@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/tomchavakis/turf-go/geojson"
+	"github.com/tomchavakis/geojson"
 )
 
 // Collection represents a feature collection which holds a list of Fetures
@@ -20,7 +20,6 @@ func NewFeatureCollection(features []Feature) (*Collection, error) {
 
 // CollectionFromJSON returns a new Collection by passing in a valid JSON string.
 func CollectionFromJSON(gjson string) (*Collection, error) {
-
 	if gjson == "" {
 		return nil, errors.New("input cannot be empty")
 	}
@@ -32,5 +31,4 @@ func CollectionFromJSON(gjson string) (*Collection, error) {
 	}
 
 	return &collection, nil
-
 }

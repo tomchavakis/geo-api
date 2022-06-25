@@ -8,7 +8,7 @@ type Point struct {
 }
 
 // NewPoint initializes a new Point
-func NewPoint(lat float64, lng float64) *Point {
+func NewPoint(lat, lng float64) *Point {
 	return &Point{
 		Lat: lat,
 		Lng: lng,

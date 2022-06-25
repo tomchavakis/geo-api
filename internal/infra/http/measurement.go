@@ -7,7 +7,7 @@ import (
 	"strconv"
 
 	"github.com/tomchavakis/geo-api/internal/app/measurement"
-	"github.com/tomchavakis/turf-go/geojson/geometry"
+	"github.com/tomchavakis/geojson/geometry"
 )
 
 // MeasurementHandler struct
@@ -24,7 +24,6 @@ func NewMeasurementHandler(msrSvc measurement.Service) *MeasurementHandler {
 }
 
 func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
-
 	latA, lonA, err := getLatLon(r, "latA", "lonA")
 
 	if err != nil {
@@ -118,7 +117,7 @@ func (sh *MeasurementHandler) midpointRoute(w http.ResponseWriter, r *http.Reque
 	return NewResponse(midpoint, http.StatusOK), nil
 }
 
-func getLatLon(r *http.Request, lat string, lon string) (*float64, *float64, error) {
+func getLatLon(r *http.Request, lat, lon string) (*float64, *float64, error) {
 	lat0 := r.URL.Query().Get(lat)
 	latA, err := strconv.ParseFloat(lat0, 64)
 	if err != nil {

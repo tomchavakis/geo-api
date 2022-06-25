@@ -14,7 +14,7 @@ type BBOX struct {
 }
 
 // NewBBox initializes a new Bounding Box
-func NewBBox(west float64, south float64, east float64, north float64) *BBOX {
+func NewBBox(west, south, east, north float64) *BBOX {
 	return &BBOX{
 		West:  west,
 		South: south,

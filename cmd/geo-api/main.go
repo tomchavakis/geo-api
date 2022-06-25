@@ -20,20 +20,19 @@ import (
 var build = "develop"
 
 func main() {
-	log := log.New(os.Stdout, "geo-api ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
+	lg := log.New(os.Stdout, "geo-api ", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
 
-	if err := run(log); err != nil {
+	if err := run(lg); err != nil {
 		log.Println("main: error:", err)
 		log.Println("main: Completed")
 		os.Exit(1)
 	}
 }
 
-func run(log *log.Logger) error {
-
+func run(lg *log.Logger) error {
 	// loads values from .env into the system
 	if err := godotenv.Load(); err != nil {
-		log.Print("No .env file found")
+		lg.Print("No .env file found")
 	}
 
 	ctx := context.Background()
@@ -41,10 +40,10 @@ func run(log *log.Logger) error {
 
 	// App Starting
 	expvar.NewString("build").Set(build)
-	log.Printf("main: Started : Application initializing : version %q", build)
+	lg.Printf("main: Started : Application initializing : version %q", build)
 
 	// Start API Service
-	log.Println("main: Initializing API")
+	lg.Println("main: Initializing API")
 
 	// channel to listen for an interrupt or terminate singal from the OS.
 	shutdown := make(chan os.Signal, 1)
@@ -53,7 +52,7 @@ func run(log *log.Logger) error {
 
 	msrSvc, err := measurement.New()
 	if err != nil {
-		log.Printf("error: %v", err)
+		lg.Printf("error: %v", err)
 		return errors.New("main: can't initialize measurement service")
 	}
 
@@ -69,7 +68,7 @@ func run(log *log.Logger) error {
 	}
 
 	go func() {
-		log.Printf("main: API listening on %s", api.Addr)
+		lg.Printf("main: API listening on %s", api.Addr)
 		serverErrors <- api.ListenAndServe()
 	}()
 
@@ -78,11 +77,11 @@ func run(log *log.Logger) error {
 	// /debug/vars
 
 	if cfg.Web.DebugMode {
-		log.Println("main: Initializing debugging support")
+		lg.Println("main: Initializing debugging support")
 		go func() {
-			log.Printf("main: Debug Listening %s", cfg.Web.DebugHost)
+			lg.Printf("main: Debug Listening %s", cfg.Web.DebugHost)
 			if err := http.ListenAndServe(cfg.Web.DebugHost, http.DefaultServeMux); err != nil {
-				log.Printf("main: Debug Listener closed : %v", err)
+				lg.Printf("main: Debug Listener closed : %v", err)
 			}
 		}()
 	}
@@ -95,7 +94,7 @@ func run(log *log.Logger) error {
 	case err := <-serverErrors:
 		return errors.Wrap(err, "server error")
 	case sig := <-shutdown:
-		log.Printf("main: %v : Start shutdown", sig)
+		lg.Printf("main: %v : Start shutdown", sig)
 		// Give outstanding requests a deadline for completion.
 		const timeout = 5 * time.Second
 		ctx, cancel := context.WithTimeout(context.Background(), timeout)
@@ -104,12 +103,12 @@ func run(log *log.Logger) error {
 		// Asking listener to shutdown and load shed.
 		err := api.Shutdown(ctx)
 		if err != nil {
-			log.Printf("main : Graceful shutdown did not complete in %v : %v", timeout, err)
+			lg.Printf("main : Graceful shutdown did not complete in %v : %v", timeout, err)
 			err = api.Close()
 		}
 
 		if err != nil {
-			log.Fatalf("main : could not stop server gracefully : %v", err)
+			lg.Fatalf("main : could not stop server gracefully : %v", err)
 		}
 	}
 	return nil
