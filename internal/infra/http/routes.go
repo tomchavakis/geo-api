@@ -21,5 +21,6 @@ func (h *HTTP) RouteBuilder() {
 		h.Router.Get("/api/v1/bearing", handle(h.s.bearingRoute))
 		h.Router.Get("/api/v1/destination", handle(h.s.destinationRoute))
 		h.Router.Get("/api/v1/midpoint", handle(h.s.midpointRoute))
+		h.Router.Post("/api/v1/nearestpoint", handle(h.s.nearestPointRoute))
 	})
 }
