@@ -1,17 +1,26 @@
 # Geo-Api
 
-geo-api is an api for geo-applications written in Go.
+Geo-Api is an API for GIS (Geographical Information Systems) Applications written in GO.
 
-Geo-Api is integrated with grafana, prometheus and alertmanager. 
+The API is a work in progress
 
-## Start the entire Application
+Features:
 
+ - [x] Distance
+ - [x] MidPoint
+ - [x] Bearing
+ - [x] Destination
+
+If you are using Postman you can download the relative Collection in the `docs` folder or just press [here](https://raw.githubusercontent.com/tomchavakis/geo-api/main/docs/postman/GeoAPI.postman_collection.json).
+
+## Start the Application
+
+Go Run:
 ```
-make up
+make run
 ```
 
-## Stop the Application
-
+Docker Run
 ```
-make down
+make docker-run
 ```
