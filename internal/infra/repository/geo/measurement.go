@@ -54,8 +54,8 @@ func (r *Repository) GetNearestPoint(refPoint geometry.Point, points []geometry.
 }
 
 // GetMidPoint returns the point between two other points.
-func (r *Repository) GetMidPoint(x, y geometry.Point) geometry.Point {
+func (r *Repository) GetMidPoint(x, y geometry.Point) *geometry.Point {
 	mid := m.MidPoint(x, y)
 
-	return mid
+	return &mid
 }

@@ -24,7 +24,7 @@ func NewMeasurementHandler(msrSvc measurement.Service) *MeasurementHandler {
 	return mh
 }
 
-func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
+func (sh *MeasurementHandler) distanceRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
 	latA, lonA, err := getLatLon(r, "latA", "lonA")
 
 	if err != nil {
@@ -115,7 +115,7 @@ func (sh *MeasurementHandler) midpointRoute(w http.ResponseWriter, r *http.Reque
 
 	midpoint := sh.measurementSvc.GetMidPoint(p1, p2)
 
-	return NewResponse(midpoint, http.StatusOK), nil
+	return NewResponse(*midpoint, http.StatusOK), nil
 }
 
 // NearestPointMessage ...
