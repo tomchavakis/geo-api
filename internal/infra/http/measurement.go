@@ -24,17 +24,24 @@ func NewMeasurementHandler(msrSvc measurement.Service) *MeasurementHandler {
 	return mh
 }
 
-func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
+// NearestPointMessage ...
+type NearestPointMessage struct {
+	ReferencePoint *geometry.Point  `json:"ref,omitempty"`
+	Points         []geometry.Point `json:"points"`
+	Units          string           `json:"units"`
+}
+
+func (sh *MeasurementHandler) distanceRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
 	latA, lonA, err := getLatLon(r, "latA", "lonA")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	latB, lonB, err := getLatLon(r, "latB", "lonB")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	p1 := geometry.Point{
@@ -50,7 +57,6 @@ func (sh *MeasurementHandler) measurementRoute(w http.ResponseWriter, r *http.Re
 	// Business Logic
 	d, err := sh.measurementSvc.GetDistance(p1, p2)
 	if err != nil {
-		log.Printf("error %v", err)
 		return nil, NewResponseError(errors.New(err.Error()), http.StatusInternalServerError)
 	}
 
@@ -61,13 +67,13 @@ func (sh *MeasurementHandler) bearingRoute(w http.ResponseWriter, r *http.Reques
 	latA, lonA, err := getLatLon(r, "latA", "lonA")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	latB, lonB, err := getLatLon(r, "latB", "lonB")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	p1 := geometry.Point{
@@ -94,13 +100,13 @@ func (sh *MeasurementHandler) midpointRoute(w http.ResponseWriter, r *http.Reque
 	latA, lonA, err := getLatLon(r, "latA", "lonA")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	latB, lonB, err := getLatLon(r, "latB", "lonB")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	p1 := geometry.Point{
@@ -115,14 +121,7 @@ func (sh *MeasurementHandler) midpointRoute(w http.ResponseWriter, r *http.Reque
 
 	midpoint := sh.measurementSvc.GetMidPoint(p1, p2)
 
-	return NewResponse(midpoint, http.StatusOK), nil
-}
-
-// NearestPointMessage ...
-type NearestPointMessage struct {
-	ReferencePoint *geometry.Point  `json:"ref,omitempty"`
-	Points         []geometry.Point `json:"points"`
-	Units          string           `json:"units"`
+	return NewResponse(*midpoint, http.StatusOK), nil
 }
 
 func (sh *MeasurementHandler) nearestPointRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
@@ -133,7 +132,7 @@ func (sh *MeasurementHandler) nearestPointRoute(w http.ResponseWriter, r *http.R
 	var np NearestPointMessage
 	err := json.NewDecoder(r.Body).Decode(&np)
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	if np.ReferencePoint == nil {
@@ -155,26 +154,11 @@ func (sh *MeasurementHandler) nearestPointRoute(w http.ResponseWriter, r *http.R
 	return NewResponse(nearestPoint, http.StatusOK), nil
 }
 
-func getLatLon(r *http.Request, lat, lon string) (*float64, *float64, error) {
-	lat0 := r.URL.Query().Get(lat)
-	latA, err := strconv.ParseFloat(lat0, 64)
-	if err != nil {
-		return nil, nil, errors.New("invalid point")
-	}
-	lon0 := r.URL.Query().Get(lon)
-	lonA, err := strconv.ParseFloat(lon0, 64)
-	if err != nil {
-		return nil, nil, errors.New("invalid point")
-	}
-
-	return &latA, &lonA, nil
-}
-
 func (sh *MeasurementHandler) destinationRoute(w http.ResponseWriter, r *http.Request) (*Response, error) {
 	lat, lon, err := getLatLon(r, "lat", "lon")
 
 	if err != nil {
-		return nil, NewResponseError(err, http.StatusBadRequest)
+		return nil, NewResponseError(errors.New("invalid input"), http.StatusBadRequest)
 	}
 
 	p := geometry.Point{
@@ -213,31 +197,17 @@ func (sh *MeasurementHandler) destinationRoute(w http.ResponseWriter, r *http.Re
 	return NewResponse(dp, http.StatusOK), nil
 }
 
-// As Path Params:
-// if l0 := chi.URLParam(r, "latA"); l0 != "" {
-// 	latA, err = strconv.ParseFloat(l0, 64)
-// 	if err != nil {
-// 		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
-// 	}
-// }
+func getLatLon(r *http.Request, lat, lon string) (*float64, *float64, error) {
+	lat0 := r.URL.Query().Get(lat)
+	latA, err := strconv.ParseFloat(lat0, 64)
+	if err != nil {
+		return nil, nil, errors.New("invalid point")
+	}
+	lon0 := r.URL.Query().Get(lon)
+	lonA, err := strconv.ParseFloat(lon0, 64)
+	if err != nil {
+		return nil, nil, errors.New("invalid point")
+	}
 
-// if l1 := chi.URLParam(r, "lonA"); l1 != "" {
-// 	latA, err = strconv.ParseFloat(l1, 64)
-// 	if err != nil {
-// 		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
-// 	}
-// }
-
-// if l2 := chi.URLParam(r, "latB"); l2 != "" {
-// 	latA, err = strconv.ParseFloat(l2, 64)
-// 	if err != nil {
-// 		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
-// 	}
-// }
-
-// if l3 := chi.URLParam(r, "lonB"); l3 != "" {
-// 	latA, err = strconv.ParseFloat(l3, 64)
-// 	if err != nil {
-// 		return nil, NewResponseError(errors.New("invalid point"), http.StatusBadRequest)
-// 	}
-// }
+	return &latA, &lonA, nil
+}

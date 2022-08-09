@@ -1,304 +1,237 @@
 {
-	"info": {
-		"_postman_id": "a7d96d0a-ac72-468e-aeee-2fed465ee1fd",
-		"name": "GeoAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "96940"
-	},
-	"item": [
-		{
-			"name": "API",
-			"item": [
-				{
-					"name": "Distance",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3001/api/v1/distance?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"api",
-								"v1",
-								"distance"
-							],
-							"query": [
-								{
-									"key": "latA",
-									"value": "23.33"
-								},
-								{
-									"key": "lonA",
-									"value": "34.44"
-								},
-								{
-									"key": "latB",
-									"value": "23.44"
-								},
-								{
-									"key": "lonB",
-									"value": "34.42"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "MidPoint",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3001/api/v1/midpoint?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"api",
-								"v1",
-								"midpoint"
-							],
-							"query": [
-								{
-									"key": "latA",
-									"value": "23.33"
-								},
-								{
-									"key": "lonA",
-									"value": "34.44"
-								},
-								{
-									"key": "latB",
-									"value": "23.44"
-								},
-								{
-									"key": "lonB",
-									"value": "34.42"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Bearing",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3001/api/v1/bearing?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"api",
-								"v1",
-								"bearing"
-							],
-							"query": [
-								{
-									"key": "latA",
-									"value": "23.33"
-								},
-								{
-									"key": "lonA",
-									"value": "34.44"
-								},
-								{
-									"key": "latB",
-									"value": "23.44"
-								},
-								{
-									"key": "lonB",
-									"value": "34.42"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Destination",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3001/api/v1/bearing?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"api",
-								"v1",
-								"bearing"
-							],
-							"query": [
-								{
-									"key": "latA",
-									"value": "23.33"
-								},
-								{
-									"key": "lonA",
-									"value": "34.44"
-								},
-								{
-									"key": "latB",
-									"value": "23.44"
-								},
-								{
-									"key": "lonB",
-									"value": "34.42"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Nearest Point",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ref\": {\r\n        \"lat\": 39.50,\r\n        \"lng\": -75.33\r\n    },\r\n    \"points\": [\r\n        {\r\n            \"lat\": 39.44,\r\n            \"lng\": -75.33\r\n        },\r\n        {\r\n            \"lat\": 39.45,\r\n            \"lng\": -75.33\r\n        },\r\n        {\r\n            \"lat\": 39.46,\r\n            \"lng\": -75.31\r\n        },\r\n        {\r\n            \"lat\": 39.46,\r\n            \"lng\": -75.30\r\n        }\r\n    ],\r\n    \"units\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://127.0.0.1:3001/api/v1/nearestpoint",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"api",
-								"v1",
-								"nearestpoint"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Debug",
-			"item": [
-				{
-					"name": "Debug - pprof",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Debug Vars",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:4000/debug/vars",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "4000",
-							"path": [
-								"debug",
-								"vars"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Prometheus",
-			"item": [
-				{
-					"name": "Metrics",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:3001/metrics",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "3001",
-							"path": [
-								"metrics"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "health",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:3001/health",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "3001",
-					"path": [
-						"health"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "a7d96d0a-ac72-468e-aeee-2fed465ee1fd",
+    "name": "GeoAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "96940"
+  },
+  "item": [
+    {
+      "name": "API",
+      "item": [
+        {
+          "name": "Distance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:3001/api/v1/distance?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "3001",
+              "path": ["api", "v1", "distance"],
+              "query": [
+                {
+                  "key": "latA",
+                  "value": "23.33"
+                },
+                {
+                  "key": "lonA",
+                  "value": "34.44"
+                },
+                {
+                  "key": "latB",
+                  "value": "23.44"
+                },
+                {
+                  "key": "lonB",
+                  "value": "34.42"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "MidPoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:3001/api/v1/midpoint?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "3001",
+              "path": ["api", "v1", "midpoint"],
+              "query": [
+                {
+                  "key": "latA",
+                  "value": "23.33"
+                },
+                {
+                  "key": "lonA",
+                  "value": "34.44"
+                },
+                {
+                  "key": "latB",
+                  "value": "23.44"
+                },
+                {
+                  "key": "lonB",
+                  "value": "34.42"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Bearing",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:3001/api/v1/bearing?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "3001",
+              "path": ["api", "v1", "bearing"],
+              "query": [
+                {
+                  "key": "latA",
+                  "value": "23.33"
+                },
+                {
+                  "key": "lonA",
+                  "value": "34.44"
+                },
+                {
+                  "key": "latB",
+                  "value": "23.44"
+                },
+                {
+                  "key": "lonB",
+                  "value": "34.42"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Destination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:3001/api/v1/bearing?latA=23.33&lonA=34.44&latB=23.44&lonB=34.42",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "3001",
+              "path": ["api", "v1", "bearing"],
+              "query": [
+                {
+                  "key": "latA",
+                  "value": "23.33"
+                },
+                {
+                  "key": "lonA",
+                  "value": "34.44"
+                },
+                {
+                  "key": "latB",
+                  "value": "23.44"
+                },
+                {
+                  "key": "lonB",
+                  "value": "34.42"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Nearest Point",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"ref\": {\r\n        \"lat\": 39.50,\r\n        \"lng\": -75.33\r\n    },\r\n    \"points\": [\r\n        {\r\n            \"lat\": 39.44,\r\n            \"lng\": -75.33\r\n        },\r\n        {\r\n            \"lat\": 39.45,\r\n            \"lng\": -75.33\r\n        },\r\n        {\r\n            \"lat\": 39.46,\r\n            \"lng\": -75.31\r\n        },\r\n        {\r\n            \"lat\": 39.46,\r\n            \"lng\": -75.30\r\n        }\r\n    ],\r\n    \"units\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://127.0.0.1:3001/api/v1/nearestpoint",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "3001",
+              "path": ["api", "v1", "nearestpoint"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Debug",
+      "item": [
+        {
+          "name": "Debug - pprof",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Debug Vars",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:4000/debug/vars",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "4000",
+              "path": ["debug", "vars"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Prometheus",
+      "item": [
+        {
+          "name": "Metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:3001/metrics",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "3001",
+              "path": ["metrics"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:3001/health",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "3001",
+          "path": ["health"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
