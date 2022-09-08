@@ -219,6 +219,8 @@ github.com/tomchavakis/geojson v0.0.5 h1:4A2lVdwhKurcjxhozIkXIZLzQl4Cdhh4zyIBtvc
 github.com/tomchavakis/geojson v0.0.5/go.mod h1:cV7rPpWhNXW+WnHlIo3od3KKfiekyVqe0gG2N+krlB4=
 github.com/tomchavakis/turf-go v0.0.4 h1:z5jE/cImYlHk+ucIJRMgUP+uCzE/pS86ytGlB5BhF0w=
 github.com/tomchavakis/turf-go v0.0.4/go.mod h1:/bo+hiv2LQRBzUVkG0tVE55q73gZzq958CCW1GJxQqo=
+github.com/tomchavakis/turf-go v0.0.5 h1:+kQafGVE5slB/Q0iKA2q3bl0sSsi4xJsmCLn2IR3jsw=
+github.com/tomchavakis/turf-go v0.0.5/go.mod h1:YFsD+j5apnndklbjzrRUYhOiMaGZmjX7PQHHRA4ezMI=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
