@@ -215,6 +215,8 @@ github.com/stretchr/testify v1.8.0 h1:pSgiaMZlXftHpm5L7V1+rVB+AZJydKsMxsQBIJw4PK
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/tomchavakis/geojson v0.0.3 h1:JRCom5X9ZVG9Zw0jNb7ytpcd15UCMKW9xrZdeHgBg7I=
 github.com/tomchavakis/geojson v0.0.3/go.mod h1:KYAKpqPQmGXQx4V8H9VMpr/GN8D6LdJxljkCXhyKiRI=
+github.com/tomchavakis/geojson v0.0.5 h1:4A2lVdwhKurcjxhozIkXIZLzQl4Cdhh4zyIBtvcW6oE=
+github.com/tomchavakis/geojson v0.0.5/go.mod h1:cV7rPpWhNXW+WnHlIo3od3KKfiekyVqe0gG2N+krlB4=
 github.com/tomchavakis/turf-go v0.0.4 h1:z5jE/cImYlHk+ucIJRMgUP+uCzE/pS86ytGlB5BhF0w=
 github.com/tomchavakis/turf-go v0.0.4/go.mod h1:/bo+hiv2LQRBzUVkG0tVE55q73gZzq958CCW1GJxQqo=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
