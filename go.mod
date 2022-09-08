@@ -9,7 +9,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.13.0
 	github.com/stretchr/testify v1.8.0
-	github.com/tomchavakis/geojson v0.0.3
+	github.com/tomchavakis/geojson v0.0.5
 	github.com/tomchavakis/turf-go v0.0.4
 )
 
