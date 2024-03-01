@@ -213,6 +213,8 @@ github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81P
 github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/stretchr/testify v1.8.0 h1:pSgiaMZlXftHpm5L7V1+rVB+AZJydKsMxsQBIJw4PKk=
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
+github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
+github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/tomchavakis/geojson v0.0.3 h1:JRCom5X9ZVG9Zw0jNb7ytpcd15UCMKW9xrZdeHgBg7I=
 github.com/tomchavakis/geojson v0.0.3/go.mod h1:KYAKpqPQmGXQx4V8H9VMpr/GN8D6LdJxljkCXhyKiRI=
 github.com/tomchavakis/geojson v0.0.5 h1:4A2lVdwhKurcjxhozIkXIZLzQl4Cdhh4zyIBtvcW6oE=
